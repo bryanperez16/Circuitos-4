@@ -1,17 +1,24 @@
 /*
  * Demo3_Analog_Pot.c
- *  CW turn off pot
- * Created: 17/02/2020 10:27:30
+ *  Analog Input
+ * Created: 02/03/2020 19:07:50
  * Author : Pablo Gonzalez Robles
  */ 
 
 #define F_CPU 1000000UL
 #include <avr/io.h>
-#include <avr/interrupt.h>
 #include <util/delay.h>
 
-volatile unsigned int analogResult = 0;
+unsigned int analogResult = 0;
+unsigned int binary_weighted_voltage_low;
+unsigned int binary_weighted_voltage_high;
 
+
+/*
+ADC Pre-scaler needs to be set so that the ADC input frequency is between 50 - 200kHz.
+Clock   Available pre-scaler values
+ 1 MHz   8 (125kHz), 16 (62.5kHz)
+*/
 int main(void)
 {
 	DDRB |= (1<<PB1)|(1<<PB0);   //Set the Data Direction Register to output
@@ -19,19 +26,19 @@ int main(void)
 		
 	ADMUX =
 		(0 << REFS1) |  (0 << REFS0) |   // Sets ref. voltage to VCC
-		(0 << ADLAR) |				     // 0: right adjust, 1: left adjust
-		(0 << MUX3)  |				     //  MUX bit 3
-		(0 << MUX2)  |				     //  MUX bit 2
-		(1 << MUX1)  |				     //  MUX bit 1
+		(0 << ADLAR) |				   // 0: right adjust, 1: left adjust
+		(0 << MUX3)  |				   //  MUX bit 3
+		(0 << MUX2)  |				   //  MUX bit 2
+		(1 << MUX1)  |				   //  MUX bit 1
 		(0 << MUX0);                     //  MUX bit 0
 	
 	
 	ADCSRA =
 		(1 << ADEN)  |     // Enable ADC
-		(1 << ADSC)  |     // Start Conversion
-		(1 << ADATE)  |     // Enable Auto trigger
+		(0 << ADSC)  |     // DISABLED Start Conversion (at setup)
+		(0 << ADATE)  |     // DISABLED Auto trigger
 		(0 << ADIF)  |     //
-		(1 << ADIE)  |     //ADC interrupt flag
+		(0 << ADIE)  |     // DISABLED ADC interrupt flag
 		(0 << ADPS2) | (1 << ADPS1) |  (1 << ADPS0);  // set prescaler to 8
 	
 	ADCSRB =
@@ -39,11 +46,16 @@ int main(void)
 		(0<<ADTS1)|		//Free running mode bit 1
 		(0<<ADTS0);		//Free running mode bit 0
 	
-	sei(); //enable interrupts
+	//DIDR0 |= (1<<ADC2D); // digital input buffer disabled on ADC3 pin
 	
     while (1) 
     {
-		
+		ADCSRA |= (1 << ADSC);         // start ADC measurement
+		while (ADCSRA & (1 << ADSC) ); // wait till conversion complete
+		analogResult = (ADCH<<8)|ADCL;
+		binary_weighted_voltage_low = ADCL; //Read 8 low bits first (important)
+		binary_weighted_voltage_high = ((unsigned int)(ADCH << 8)); //Read 2 high bits, then multiply by 256
+		analogResult = binary_weighted_voltage_low | binary_weighted_voltage_high;
 		//VCC = 4.8V - 1 unit = 4.6875 mV
 		if(analogResult<=200) //value 0-100 (0-0.94V)
 		{
@@ -65,11 +77,5 @@ int main(void)
 }
 
 
-ISR(ADC_vect) //interrupt function
-{
-	//The ADC generates a 10-bit result 
-	//which can be found in the ADC Result Registers, ADCH and ADCL
-	unsigned int binary_weighted_voltage_low = ADCL; //Read 8 low bits first (important)
-	unsigned int binary_weighted_voltage_high = ((unsigned int)(ADCH << 8)); //Read 2 high bits, then multiply by 256
-	analogResult = binary_weighted_voltage_low | binary_weighted_voltage_high;
-}
+
+
