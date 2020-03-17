@@ -18,19 +18,24 @@ unsigned int binary_weighted_voltage_high;
 ADC Pre-scaler needs to be set so that the ADC input frequency is between 50 - 200kHz.
 Clock   Available pre-scaler values
  1 MHz   8 (125kHz), 16 (62.5kHz)
+ 
+ PB4 
+ DDRB &= ~(1<<PB4);
+ (0 << MUX3)  |	(0 << MUX2)  |	(1 << MUX1)  |	(0 << MUX0);
+PB3
+DDRB &= ~(1<<PB3);
+(0 << MUX3)  |	(0 << MUX2)  |	(1 << MUX1)  |	(1 << MUX0);
+
 */
 int main(void)
 {
 	DDRB |= (1<<PB1)|(1<<PB0);   //Set the Data Direction Register to output
-	DDRB &= ~(1<<PB4);	//Set the Data Direction Register for the POT to input
+	DDRB &= ~(1<<PB3);	//Set the Data Direction Register for the POT to input
 		
 	ADMUX =
 		(0 << REFS1) |  (0 << REFS0) |   // Sets ref. voltage to VCC
 		(0 << ADLAR) |				   // 0: right adjust, 1: left adjust
-		(0 << MUX3)  |				   //  MUX bit 3
-		(0 << MUX2)  |				   //  MUX bit 2
-		(1 << MUX1)  |				   //  MUX bit 1
-		(0 << MUX0);                     //  MUX bit 0
+		(0 << MUX3)  |	(0 << MUX2)  |	(1 << MUX1)  |	(1 << MUX0);   //  MUX bits PB4; 0010, PB3
 	
 	
 	ADCSRA =
@@ -52,9 +57,9 @@ int main(void)
     {
 		ADCSRA |= (1 << ADSC);         // start ADC measurement
 		while (ADCSRA & (1 << ADSC) ); // wait till conversion complete
-		analogResult = (ADCH<<8)|ADCL;
-		binary_weighted_voltage_low = ADCL; //Read 8 low bits first (important)
-		binary_weighted_voltage_high = ((unsigned int)(ADCH << 8)); //Read 2 high bits, then multiply by 256
+		//result = (ADCH<<8)|ADCL; 8 bits from ADCL + 2 bits from ADCH
+		binary_weighted_voltage_low = ADCL; 
+		binary_weighted_voltage_high = ((unsigned int)(ADCH << 8)); 
 		analogResult = binary_weighted_voltage_low | binary_weighted_voltage_high;
 		//VCC = 4.8V - 1 unit = 4.6875 mV
 		if(analogResult<=200) //value 0-100 (0-0.94V)
