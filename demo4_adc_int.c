@@ -69,7 +69,7 @@ ISR(ADC_vect) //interrupt function
 {
 	//The ADC generates a 10-bit result 
 	//which can be found in the ADC Result Registers, ADCH and ADCL
-	unsigned int binary_weighted_voltage_low = ADCL; //Read 8 low bits first (important)
-	unsigned int binary_weighted_voltage_high = ((unsigned int)(ADCH << 8)); //Read 2 high bits, then multiply by 256
+	unsigned int binary_weighted_voltage_low = ADCL; //Read 8 low bits first 
+	unsigned int binary_weighted_voltage_high = ((unsigned int)(ADCH << 8)); //Read 2 high bits
 	analogResult = binary_weighted_voltage_low | binary_weighted_voltage_high;
 }
