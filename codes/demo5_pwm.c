@@ -1,33 +1,45 @@
 /*
- * Demo5_PWM.c
- *
- * Created: 16/03/2020 20:18:19
+ * Demo3_Analog_Pot.c
+ *  CW turn off pot
+ * Created: 25/02/2020 13:15:40
  * Author : Pablo Gonzalez Robles
  */ 
-#define F_CPU 1000000UL
+
+#define F_CPU 1000000UL // clock frequency
 #include <avr/io.h>
-#include <avr/interrupt.h>
 #include <util/delay.h>
 
-// For 8MHz clock: 61.2kHz period (16.25ms) of which half is on and half is off
 
-int main(void)
+int main()
 {
+	uint8_t width = 0; //width modulation variable
 	
-	DDRB = (1<<DDB0) ; // make OC0A (PB0) & OC1A (PB1) PWM output pin	
-	
-	TCCR0A = 
-			(1<<COM0A1) | (1<<COM0B0) |
-			(1<<WGM00);  // 001
-	// PWM, Phase Correct
-	TCCR0B = (1<<CS02) | (0<<CS01) | (0<<CS00);   // clkI/O/256(from prescaler)
-	// not used // TIMSK1=0B00000010;    //enable output compare interrupt for OCR1A
-    float duty = 20; //in %
-	float value = duty/100.0*255.0;
-	OCR0A = (int)value;          // set duty cycle (0.5*256)
-	
-    while (1) 
-    {
-    }
-}
+	DDRB |= (1<<PB1) | (1<< PB2); //pin OC0A as PWM output and PB2 as indication led
 
+	TCCR0A = (0<< COM0A1) | (0<< COM0A0) | 
+			 (1<< COM0B1) | (0<< COM0B0) | //OC0B as PWM pin, no inverted, Fast PWM
+			(1<< WGM01) | (1<< WGM00); //Fast PWM, Top:0xFF, Update OCR0 at Bottom (0x00), TOV Flag set on MAX (0xFF)
+	
+	TCCR0B = (0<< WGM02) | //Fast PWM, 0xff, Bottom, max
+			 (0<<CS02) | (0<<CS01) | (1<<CS00);
+	
+	OCR0B = width;
+	
+	while(1)
+	{
+		OCR0B = width;
+		width = width + 5;
+		_delay_ms(100);
+		if(width >= 255)
+		{
+			PORTB |= (1<<PB2);
+			_delay_ms(3000);
+			width = 0;
+		}
+		else
+		{
+			PORTB &= ~(1<<PB2);
+		}
+	}
+	
+}

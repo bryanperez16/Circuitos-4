@@ -17,15 +17,7 @@ unsigned int binary_weighted_voltage_high;
 /*
 ADC Pre-scaler needs to be set so that the ADC input frequency is between 50 - 200kHz.
 Clock   Available pre-scaler values
- 1 MHz   8 (125kHz), 16 (62.5kHz)
- 
- PB4 
- DDRB &= ~(1<<PB4);
- (0 << MUX3)  |	(0 << MUX2)  |	(1 << MUX1)  |	(0 << MUX0);
-PB3
-DDRB &= ~(1<<PB3);
-(0 << MUX3)  |	(0 << MUX2)  |	(1 << MUX1)  |	(1 << MUX0);
-
+1 MHz   8 (125kHz), 16 (62.5kHz)
 */
 int main(void)
 {
@@ -50,8 +42,6 @@ int main(void)
 		(0<<ADTS2)|		//Free running mode bit 2
 		(0<<ADTS1)|		//Free running mode bit 1
 		(0<<ADTS0);		//Free running mode bit 0
-	
-	//DIDR0 |= (1<<ADC2D); // digital input buffer disabled on ADC3 pin
 	
     while (1) 
     {
