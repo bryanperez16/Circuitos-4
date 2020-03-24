@@ -3,6 +3,9 @@
  *  CW turn off pot
  * Created: 22/02/2020 10:35:52
  * Author : Pablo Gonzalez Robles
+ * 
+ * PARAMS: Fsys: 1MHz, 8-bit Timer, Pval = 1024
+ * RESULT:   
  */ 
 
 #define F_CPU 1000000UL
@@ -23,7 +26,7 @@ int main(void)
  	DDRB |= (1<<userLed);
  	PORTB &= ~(1<<userLed);    
     
-	TCCR0B = (1<<CS02)|(0<<CS01)|(1<<CS00); /* Timer clock = I/O clock / 1024 */
+	TCCR0B = (1<<CS02)|(0<<CS01)|(1<<CS00); /* Prescaler: 1024 */
     
     TIMSK = (1<<TOIE0); /* Enable Overflow Interrupt */
 	
@@ -44,7 +47,6 @@ int main(void)
 
 ISR (TIMER0_OVF_vect)
 {
-	
 	setFlag(1); /* Toggle a pin on timer overflow */
 }
 

@@ -1,5 +1,5 @@
 /*
- * Demo3_Analog_Pot.c
+ * Demo4_Analog_Pot_Int.c
  *  CW turn off pot
  * Created: 17/02/2020 10:27:30
  * Author : Pablo Gonzalez Robles

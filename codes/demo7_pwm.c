@@ -3,6 +3,7 @@
  *  CW turn off pot
  * Created: 25/02/2020 13:15:40
  * Author : Pablo Gonzalez Robles
+ * 
  */ 
 
 #define F_CPU 1000000UL // clock frequency
@@ -14,16 +15,16 @@ int main()
 {
 	uint8_t width = 0; //width modulation variable
 	
-	DDRB |= (1<<PB1) | (1<< PB2); //pin OC0A as PWM output and PB2 as indication led
+	DDRB |= (1<<PB1) | (1<< PB2); //pin OC0B as PWM output and PB2 as indication led
 
 	TCCR0A = (0<< COM0A1) | (0<< COM0A0) | 
-			 (1<< COM0B1) | (0<< COM0B0) | //OC0B as PWM pin, no inverted, Fast PWM
+			 (1<< COM0B1) | (0<< COM0B0) | //Fast PWM. OCnX as PWM pin, no inverted
 			(1<< WGM01) | (1<< WGM00); //Fast PWM, Top:0xFF, Update OCR0 at Bottom (0x00), TOV Flag set on MAX (0xFF)
 	
 	TCCR0B = (0<< WGM02) | //Fast PWM, 0xff, Bottom, max
-			 (0<<CS02) | (0<<CS01) | (1<<CS00);
+			 (0<<CS02) | (0<<CS01) | (1<<CS00); //No prescaling
 	
-	OCR0B = width;
+	OCR0B = width; //Output duty cycle = (OCR0B+1)/256
 	
 	while(1)
 	{
