@@ -15,19 +15,19 @@ void setFlag(int);
 int getFlag();
 
 volatile int flag = 0; //flag which control the actions timing inside the infinite loop
-volatile int t0_initial_val = 134; 
+volatile int t0_initial_val = 12; 
 
 int main(void)
 {
         DDRB |= (1<<DDB0);
         PORTB &= ~(1<<PB0);
 
-		TCCR1 = (1<<CS13)|(1<<CS12)|(0<<CS11)|(0<<CS10); //Pre-scaler = 2048
+		TCCR1 = (1<<CS13)|(1<<CS12)|(1<<CS11)|(1<<CS10); //Pre-scaler = 1024
 
         TIMSK |= (1<<TOIE1); // Overflow Interrupt Enable
         TIFR = (1<<TOV1); /* Clearing overflow flag */
         sei();
-        TCNT1 = 0;
+        TCNT1 = t0_initial_val;
 		
     while (1) 
     {
