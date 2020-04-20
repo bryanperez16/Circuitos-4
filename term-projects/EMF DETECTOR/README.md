@@ -11,13 +11,18 @@ Para poder correr y probar el codigo:
 * Luego se debe entrar al programa en proteus
 * Y confirmar que el Archivo.hex esta intalado en el ATTINY85
 como esto:
-![](/pasos.png)
-![](/hex.png)
+![](EMF DETECTOR/pasos.png)
+![](EMF DETECTOR/hex.png)
 
 
 ## Preview
-![](/preview.png)
+![](EMF DETECTOR/preview.png)
 
-### Notes
+### Notas
 El codigo esta Comentado linea por linea para el entendimiento practico.
 Al estar mayor al 20% de campo cambia a luz amarilla significando que se esta entrando a un rango de campo intermedio y al pasar del 66% de la lectura cambia la luz a roja significando que es un campo mas fuerte.
+
+
+ESQUEMATICO Y PCB 
+Hechos con el Programa EasyEda Adjuntados como PDF  
+![](EMF DETECTOR/PCB.jpeg)
