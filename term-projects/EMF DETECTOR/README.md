@@ -16,7 +16,7 @@ como esto:
 
 
 ## Preview
-![](EMF DETECTOR/preview.png)
+![](https://github.com/AnelBultron/Circuitos-4/tree/patch-1/term-projects/EMF%20DETECTOR/preview.png)
 
 ### Notas
 El codigo esta Comentado linea por linea para el entendimiento practico.
