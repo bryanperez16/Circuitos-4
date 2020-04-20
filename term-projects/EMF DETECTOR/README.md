@@ -4,9 +4,6 @@ Este proyecto se basa en un Detector de Campo Electromagnetico utilizando un ATT
 ## Contenido
 Este proyecto contiene El codigo en C, el codigo de prueba inicial en ARDUINO, el Proteus con el cual probamos el proyecto, y el PCB creado.
 
-## Demo
-If you want to see the demo of this proyect deployed, you can visit [Demo of the proyect](https://anabelisa.co/tips-para-hacer-un-buen-readme-md/)
-
 ## Como Utilizar 
 Para poder correr y probar el codigo:
 *Primero se debe descargar: Proteus, Atmel Studio.
@@ -15,6 +12,7 @@ Para poder correr y probar el codigo:
 * Y confirmar que el Archivo.hex esta intalado en el ATTINY85
 como esto:
 ![](/pasos.png)
+https://raw.githubusercontent.com/Circuitos-4/term-proyects/branch-1/EMF DETECTOR/pasos.png
 ![](/hex.png)
 
 Markdown has enumation and nested lists.
