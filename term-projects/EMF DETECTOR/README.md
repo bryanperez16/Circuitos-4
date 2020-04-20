@@ -12,20 +12,12 @@ Para poder correr y probar el codigo:
 * Y confirmar que el Archivo.hex esta intalado en el ATTINY85
 como esto:
 ![](/pasos.png)
-(https://raw.githubusercontent.com/Circuitos-4/term-proyects/patch-1/EMF DETECTOR/pasos.png)
 ![](/hex.png)
 
-Markdown has enumation and nested lists.
 
-## Installation
-To install and run this proyect just type and execute
-```bash
-npm install
-```
 ## Preview
-Insert here an image of the preview if your project has one. The image can be into the project, you have to indicate the route and look like this.
-
 ![](/preview.png)
 
 ### Notes
-If you want to learn all about markdown i recommend you visit the site [markdown.es](https://markdown.es/sintaxis-markdown/)
+El codigo esta Comentado linea por linea para el entendimiento practico.
+Al estar mayor al 20% de campo cambia a luz amarilla significando que se esta entrando a un rango de campo intermedio y al pasar del 66% de la lectura cambia la luz a roja significando que es un campo mas fuerte.
