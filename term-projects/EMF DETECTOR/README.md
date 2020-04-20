@@ -12,7 +12,7 @@ Para poder correr y probar el codigo:
 * Y confirmar que el Archivo.hex esta intalado en el ATTINY85
 como esto:
 ![](/pasos.png)
-https://raw.githubusercontent.com/Circuitos-4/term-proyects/branch-1/EMF DETECTOR/pasos.png
+(https://raw.githubusercontent.com/Circuitos-4/term-proyects/patch-1/EMF DETECTOR/pasos.png)
 ![](/hex.png)
 
 Markdown has enumation and nested lists.
