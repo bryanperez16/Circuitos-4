@@ -11,12 +11,12 @@ Para poder correr y probar el codigo:
 * Luego se debe entrar al programa en proteus
 * Y confirmar que el Archivo.hex esta intalado en el ATTINY85
 como esto:
-![Proteus](https://github.com/AnelBultron/Circuitos-4/tree/patch-1/term-projects/EMF%20DETECTOR/pasos.png)
-![hex](https://github.com/AnelBultron/Circuitos-4/tree/patch-1/term-projects/EMF%20DETECTOR/hex.png)
+![Proteus](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/pasos.png)
+![hex](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/hex.png)
 
 
 ## Preview
-![Preview](https://github.com/AnelBultron/Circuitos-4/tree/patch-1/term-projects/EMF%20DETECTOR/preview.png)
+![Preview](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/preview.png)
 
 ### Notas
 El codigo esta Comentado linea por linea para el entendimiento practico.
@@ -28,4 +28,4 @@ Hechos con el Programa EasyEda Adjuntados como PDF
 El pcb esta compuesto por un attiny 85 un buzzer, battery port, un Led RGB, un switch y la antena.
 
 Se divide en dos capas la capa(Rojo) lleva todo el cableado que se encuentra en la parte superior de la placa la capa (azul) lleva el cableado que va debajo de los componentes para no interferir con la parte superios y que no genere ningun corto
-![PCB](https://github.com/AnelBultron/Circuitos-4/tree/patch-1/term-projects/EMF%20DETECTOR/PCB.jpeg)
+![PCB](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/PCB.jpeg)
