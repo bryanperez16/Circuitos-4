@@ -11,12 +11,12 @@ Para poder correr y probar el codigo:
 * Luego se debe entrar al programa en proteus
 * Y confirmar que el Archivo.hex esta intalado en el ATTINY85
 como esto:
-![Proteus](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/pasos.png)
+![Proteus](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/Pasos.png)
 ![hex](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/hex.png)
 
 
 ## Preview
-![Preview](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/preview.png)
+![Preview](https://github.com/uLatinaPma-Mechatronics/Circuitos-4/tree/master/term-projects/EMF%20DETECTOR/Preview.png)
 
 ### Notas
 El codigo esta Comentado linea por linea para el entendimiento practico.
