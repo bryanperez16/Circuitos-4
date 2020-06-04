@@ -12,7 +12,7 @@
 
 int main(void)
 {
-	DDRB = 0b00000011;          // Set PB0 to be output
+	DDRB = 0b00000001;          // Set PB0 to be output
 	
     while (1) 
     {
