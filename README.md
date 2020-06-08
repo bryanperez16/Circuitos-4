@@ -1,2 +1,2 @@
 # Circuitos-4
-Circuitos y Sistemas Electrónicos 4 - Universidad Latina de Panamá [Actualizado: Marzo,2020]
+Repo del curso Circuitos y Sistemas Electrónicos 4 - Universidad Latina de Panamá [Actualizado: Junio,2020]
