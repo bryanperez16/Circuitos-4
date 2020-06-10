@@ -23,7 +23,7 @@ Clock   Available pre-scaler values
 int main(void)
 {
 	DDRB |= (1<<PORTB6)|(1<<PORTB3);   //Set the Data Direction Register to output (PB3 = yellow led , PB6 = green led)
-	DDRB &= ~(1<<PORTA1);	//Set the Data Direction Register for the POT to input
+	DDRA &= ~(1<<PORTA1);	//Set the Data Direction Register for the POT to input
 	
 	ADMUX =
 	(0 << REFS1) |  (0 << REFS0) |   // Sets ref. voltage to VCC
