@@ -35,8 +35,8 @@ int main(void)
 	(1 << ADEN)  |     // Enable ADC
 	(1 << ADSC)  |     // Start Conversion
 	(1 << ADATE)  |     // Enable Auto trigger
-	(0 << ADIF)  |     //
-	(1 << ADIE)  |     //ADC interrupt flag
+	(0 << ADIF)  |     // ADC interrupt flag
+	(1 << ADIE)  |     //ADC Interrupt Enable
 	(1 << ADPS2) | (1 << ADPS1) |  (1 << ADPS0);  // set pre-scaler to 128
 	
 	ADCSRB =
