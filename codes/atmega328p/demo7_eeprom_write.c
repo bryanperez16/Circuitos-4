@@ -51,7 +51,7 @@ void Write_EEMEM()
 {
 	char tmp[] = "p#B1o,!";
 	eeprom_write_block(tmp, own_string, sizeof(tmp));
-	eeprom_write_byte(&eeprom_var1,0xbb); //1 byte
+	eeprom_write_byte(&eeprom_var1,0xbb); //1 byte en la siguiente línea disponible
 	alert();
 }
 
@@ -69,11 +69,11 @@ int main(void)
 {
 	cli();
 	DDRB |= (1<<blinkingLed);   
-	Write_word_simple(30, 0x6543);
-	Write_float_simple(20,3.141592); 
-	Write_byte_simple(40,0x12);
-	Write_EEMEM();
-	Write_byte_properly(41,0x24);
+	Write_EEMEM(); //p#B1o, + bb hex value stored in available space
+	Write_float_simple(20,3.141592); //float value to hex value stored at address 20
+	Write_word_simple(30, 0x6543); // over 1 byte value using little-endian
+	Write_byte_simple(40,0x12); //12 hex value stored at address 40
+	Write_byte_properly(41,0x24); // 24 hex value stored at address 41
 
 
     while (1) 
