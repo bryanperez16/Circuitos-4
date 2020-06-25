@@ -40,7 +40,7 @@ int main(void)
 		TCCR1B |= (1 << WGM13) | (1 << WGM12) | (1 << CS12)| (0 << CS11)| (0 << CS10);
 		
 
-		ICR1 = 3905; //Top value  Mhz /(Pval * 1Hz) - 1
+		ICR1 = 3905; //Top value  Fsys /(Pval * 1Hz) - 1
 		OCR1A = 1952; // 50%
 
 	while (1);
