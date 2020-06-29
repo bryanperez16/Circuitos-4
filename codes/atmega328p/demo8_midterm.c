@@ -53,11 +53,11 @@ void init_adc(void)
 
 void init_servo(void)
 {
-	DDRB |= (1<<servopwm);	/*  OC1A as pwm output */
-	TCNT1 = 0;		/* Set timer1 count register to zero */
-	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
+	DDRB |= (1<<servopwm);	//set pwm pin (OC1A)
+	TCNT1 = 0;		// timer 1 register to 0
+	ICR1 = 2499;	// counting till icr1 value
 
-	/* Set Fast PWM, TOP in ICR1, , clk/8 */
+
 	TCCR1A |= 
 	(1<<COM1A1) |(0<<COM1A0) //Clear OC1A on Compare Match, set OC1A at BOTTOM (non-inverting mode)
 	|(1<<WGM11) |(0<<WGM10); //waveform generation mode #14 (Fast PWM, TOP = ICR1, UPDATE OCR1A at BOTTOM, TOV1 FLAG set on TOP )
